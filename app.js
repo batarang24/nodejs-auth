@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require('./routes/authRoutes');
 
 const app = express();
 
@@ -14,3 +15,4 @@ mongoose.connect(uri,{})
 
 // routes
 app.get('/', (req, res) => res.send('Hello world'));
+app.use(router)
