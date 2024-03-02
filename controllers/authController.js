@@ -51,6 +51,19 @@ module.exports.login_get=(req,res)=>{
     res.send('login get')
 }
 
-module.exports.login_post=(req,res)=>{
-    res.send('login post')
+module.exports.login_post=async function(req,res){
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.login({ email, password });
+    const jwt=createjwt(user._id);
+  
+    res.cookie('jwt',jwt,{httpOnly:true,maxAge:maxage*1000})
+    res.status(201).json(user._id);
+  }
+  catch(err) {
+    console.log(err)
+    const errors=errorsol(err);
+    res.status(400).json(errors);
+  }
 }
