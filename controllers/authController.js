@@ -32,6 +32,7 @@ module.exports.signup_post=async(req,res)=>{
       res.status(201).json(user);
     }
     catch(err) {
+      console.log(err)
       const errors=errorsol(err);
       res.status(400).json(errors);
     }
