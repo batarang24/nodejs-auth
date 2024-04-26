@@ -9,8 +9,9 @@ app.use(express.json());
 
 // database connection
 const uri='mongodb+srv://naren:hello123@cluster0.hedlmiz.mongodb.net/untitled';
+const PORT=process.env.PORT||3000
 mongoose.connect(uri,{})
-  .then((result) => app.listen(3000))
+  .then((result) => app.listen(PORT))
   .catch((err) => console.log(err));
 
 // routes
